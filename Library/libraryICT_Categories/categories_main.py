@@ -15,11 +15,8 @@ def main():
 
     try:
         # Execute test cases
-        categories_login(driver)
-        print("login success")
-
+        login(driver)
         categories_add(driver)
-        print("add success")
 
     finally:
         # Close the browser

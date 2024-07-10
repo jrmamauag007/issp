@@ -15,7 +15,7 @@ def main():
 
     try:
         # Execute test cases
-        agency_login(driver)
+        login(driver)
         print("login success")
 
         # agency_search(driver)

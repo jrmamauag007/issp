@@ -15,7 +15,7 @@ def main():
 
     try:
         # Execute test cases
-        fs_login(driver)
+        login(driver)
         print("login success")
 
         fs_add(driver)

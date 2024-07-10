@@ -19,8 +19,6 @@ def main():
     try:
         # Execute test cases
         login(driver)
-        print("login success")
-
         user_add(driver)
 
     finally:

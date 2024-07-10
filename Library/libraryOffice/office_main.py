@@ -15,15 +15,8 @@ def main():
 
     try:
         # Execute test cases
-        office_login(driver)
-        print("login success")
-
-        # agency_search(driver)
-        # print("search success")
-
+        login(driver)
         office_add(driver)
-        print("add success")
-
     finally:
         # Close the browser
         driver.quit()
