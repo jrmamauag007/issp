@@ -1,14 +1,14 @@
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait, Select
 from selenium.webdriver.support import expected_conditions as EC
+import time
 
 
-def agency_add(driver):
-    # Go to library
-    agency = WebDriverWait(driver, 30).until(
-        EC.element_to_be_clickable((By.XPATH, "/html/body/div/div/div/div[1]/div/ul/li[2]/a"))
+def profile_add(driver):
+    WebDriverWait(driver, 30).until(
+        EC.visibility_of_element_located((By.XPATH, "//a[@href='/agency-profile']"))
     )
-    agency.click()
+    driver.get("http://10.10.99.23/agency-profile")
 
     profile = WebDriverWait(driver, 30).until(
         EC.element_to_be_clickable((By.XPATH, "/html/body/div/div/div/div[2]/div[2]/main/div/div[2]/div/ul/li[1]/p"))
@@ -18,14 +18,10 @@ def agency_add(driver):
     # Fill out the form fields
     form_data_list = [
         {
-            "agency_name": "Test Agency",
-            "alias": "TA",
-            "agency_group": "Sectoral Planning Councils",
-            "agency_website": "http://www.testagency.com",
-            "first_name": "John",
-            "middle_initial": "D",
-            "surname": "Doe",
-            "suffix": "Jr."
+            "reg": "1",
+            "prov": "1",
+            "other": "1",
+            "actual": "1",
         }
     ]
 
@@ -96,7 +92,7 @@ def agency_add(driver):
                 print("Contact Number field name is visible")
 
                 assert WebDriverWait(driver, 10).until(
-                    EC.visibility_of_element_located((By.XPATH, "//p[normalize-space()=' Organizational Chart ']"))
+                    EC.visibility_of_element_located((By.XPATH, "//p[normalize-space()='Organizational Chart']"))
                 ), "Organizational Chart field name not found"
                 print("Organizational Chart field name is visible")
 
@@ -122,6 +118,9 @@ def agency_add(driver):
 
             except AssertionError as e:
                 print(e)
+
+            img_field = driver.find_element(By.XPATH, "//input[@type='file']")
+            img_field.send_keys('C:/Users/jrmam/test/pythonProject/AgencyProfile/img.png')
 
             reg_field = driver.find_element(By.XPATH, "//input[@id='oc_no_reg_offices']")
             reg_field.clear()
@@ -154,7 +153,7 @@ def agency_add(driver):
             )
             # Check the actual text against expected text
             actual_text = success_message.text.strip()  # Strip whitespace for accurate comparison
-            expected_text = "Agency / Institution added successfully."
+            expected_text = "Agency Profile added successfully."
 
             if actual_text == expected_text:
                 # Find and click the OK button

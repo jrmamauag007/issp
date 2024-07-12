@@ -1,5 +1,7 @@
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
+import sys
+import os
 
 agency_path = 'C:/Users/jrmam/test/pythonProject/AgencyProfile'
 sys.path.insert(0, agency_path)
@@ -16,7 +18,7 @@ def main():
     try:
         # Execute test cases
         login(driver)
-        agency_add(driver)
+        profile_add(driver)
 
     finally:
         # Close the browser
