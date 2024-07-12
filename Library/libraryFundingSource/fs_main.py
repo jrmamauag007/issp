@@ -1,5 +1,7 @@
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
+import sys
+import os
 
 library_path = 'C:/Users/jrmam/test/pythonProject/Library'
 sys.path.insert(0, library_path)
