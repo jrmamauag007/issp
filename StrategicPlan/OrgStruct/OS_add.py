@@ -6,7 +6,7 @@ import time
 
 def OS_add(driver):
     WebDriverWait(driver, 30).until(
-        EC.visibility_of_element_located((By.XPATH, "//a[@href='/agency-profile']"))
+        EC.visibility_of_element_located((By.XPATH, "//a[@href='/strategic-plan']"))
     )
     driver.get("http://10.10.99.23/strategic-plan")
 
