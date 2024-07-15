@@ -3,12 +3,12 @@ from selenium.webdriver.support.ui import WebDriverWait, Select
 from selenium.webdriver.support import expected_conditions as EC
 
 
-def agency_add(driver):
+def mandate_add(driver):
     # Go to library
-    agency = WebDriverWait(driver, 30).until(
+    WebDriverWait(driver, 30).until(
         EC.element_to_be_clickable((By.XPATH, "/html/body/div/div/div/div[1]/div/ul/li[2]/a"))
     )
-    agency.click()
+    driver.get("http://10.10.99.23/agency-profile")
 
     mandate = WebDriverWait(driver, 30).until(
         EC.element_to_be_clickable((By.XPATH, "/html/body/div/div/div/div[2]/div[2]/main/div/div[2]/div/ul/li[2]/a"))
@@ -18,14 +18,10 @@ def agency_add(driver):
     # Fill out the form fields
     form_data_list = [
         {
-            "agency_name": "Test Agency",
-            "alias": "TA",
-            "agency_group": "Sectoral Planning Councils",
-            "agency_website": "http://www.testagency.com",
-            "first_name": "John",
-            "middle_initial": "D",
-            "surname": "Doe",
-            "suffix": "Jr."
+            "basis": "Test",
+            "function": "Test",
+            "vision": "Test",
+            "mission": "Test",
         }
     ]
 
@@ -34,110 +30,72 @@ def agency_add(driver):
             # Assert the visibility of form fields by their placeholders
             try:
                 assert WebDriverWait(driver, 10).until(
-                    EC.visibility_of_element_located((By.XPATH, "//p[normalize-space()='IS Planner']"))
-                ), "IS Planner field name not found"
-                print("IS Planner field name is visible")
+                    EC.visibility_of_element_located((By.XPATH, "//p[normalize-space()='Mandate']"))
+                ), "Mandate field name not found"
+                print("Mandate field name is visible")
 
-                assert WebDriverWait(driver, 10).until(
-                    EC.visibility_of_element_located((By.XPATH, "//span[normalize-space()='Agency Head']"))
-                ), "Agency Head field name not found"
-                print("Agency Head field name is visible")
-
-                assert WebDriverWait(driver, 10).until(
-                    EC.visibility_of_element_located((By.XPATH, "//span[normalize-space()='Focal Person']"))
-                ), "Focal Person field name not found"
-                print("Focal Person field name is visible")
-
-                assert WebDriverWait(driver, 10).until(
-                    EC.visibility_of_element_located((By.XPATH, "//span[normalize-space()='Agency Official Website Link']"))
-                ), "Agency Official Website Link field name not found"
-                print("Agency Official Website Link field name is visible")
+                # assert WebDriverWait(driver, 10).until(
+                #     EC.visibility_of_element_located((By.XPATH, "//span[@class='flex flex-row label-text' and text()='Legal Basis']"))
+                # ), "Legal Basis field name not found"
+                # print("Legal Basis field name is visible")
+                #
+                # assert WebDriverWait(driver, 10).until(
+                #     EC.visibility_of_element_located((By.XPATH, "//span[@class='flex flex-row label-text' and text()='Functions']"))
+                # ), "Functions field name not found"
+                # print("Functions field name is visible")
 
                 assert WebDriverWait(driver, 10).until(
                     EC.visibility_of_element_located(
-                        (By.XPATH, "//span[normalize-space()='Agency Official Website Link']"))
-                ), "Agency Website field name not found"
-                print("Agency Official Website Link field name is visible")
+                        (By.XPATH, "//p[normalize-space()='Vision Statement']"))
+                ), "Vision Statement field name not found"
+                print("Vision Statement field name is visible")
+
+                # assert WebDriverWait(driver, 10).until(
+                #     EC.visibility_of_element_located((By.XPATH, "//span[@class='flex flex-row label-text' and text()='Vision Statement']"))
+                # ), "Statement field name not found"
+                # print("Statement field name is visible")
 
                 assert WebDriverWait(driver, 10).until(
-                    EC.visibility_of_element_located((By.XPATH, "//span[normalize-space()='Focal Person Contact Details']"))
-                ), "Focal Person Contact Details field name not found"
-                print("Focal Person Contact Details field name is visible")
+                    EC.visibility_of_element_located((By.XPATH, "//p[normalize-space()='Mission Statement']"))
+                ), "Mission Statement field name not found"
+                print("Mission Statement field name is visible")
 
-
-                assert WebDriverWait(driver, 10).until(
-                    EC.visibility_of_element_located((By.XPATH, "//p[normalize-space()='IS Planner']"))
-                ), "IS Planner field name not found"
-                print("IS Planner field name is visible")
-
-                assert WebDriverWait(driver, 10).until(
-                    EC.visibility_of_element_located((By.XPATH, "//span[normalize-space()='Designated IS Planner']"))
-                ), "Designated IS Planner field name not found"
-                print("Designated IS Planner field name is visible")
+                # assert WebDriverWait(driver, 10).until(
+                #     EC.visibility_of_element_located((By.XPATH, "//span[@class='flex flex-row label-text' and text()='Mission Statement']"))
+                # ), "Statement field name not found"
+                # print("Statement field name is visible")
 
                 assert WebDriverWait(driver, 10).until(
-                    EC.visibility_of_element_located((By.XPATH, "//span[normalize-space()='Email Address']"))
-                ), "Email Address field name not found"
-                print("Email Address field name is visible")
+                    EC.visibility_of_element_located((By.XPATH, "//p[contains(text(),'Agency and its Environment (Functional Interface C')]"))
+                ), "AGENCY  field name not found"
+                print("AGENCY  field name is visible")
 
                 assert WebDriverWait(driver, 10).until(
-                    EC.visibility_of_element_located((By.XPATH, "//span[normalize-space()='Designated IS Planner']"))
-                ), "Designated IS Planner field name not found"
-                print("Designated IS Planner field name is visible")
-
-                assert WebDriverWait(driver, 10).until(
-                    EC.visibility_of_element_located((By.XPATH, "//span[normalize-space()='Plantilla Position']"))
-                ), "Plantilla Position field name not found"
-                print("Plantilla Position field name is visible")
-
-                assert WebDriverWait(driver, 10).until(
-                    EC.visibility_of_element_located((By.XPATH, "//span[normalize-space()='Contact Number']"))
-                ), "Contact Number field name not found"
-                print("Contact Number field name is visible")
-
-                assert WebDriverWait(driver, 10).until(
-                    EC.visibility_of_element_located((By.XPATH, "//p[normalize-space()=' Organizational Chart ']"))
-                ), "Organizational Chart field name not found"
-                print("Organizational Chart field name is visible")
-
-                assert WebDriverWait(driver, 10).until(
-                    EC.visibility_of_element_located((By.XPATH, "//span[normalize-space()='No. of Regional/Extension Offices']"))
-                ), "No. of Regional/Extension Offices field name not found"
-                print("No. of Regional/Extension Offices field name is visible")
-
-                assert WebDriverWait(driver, 10).until(
-                    EC.visibility_of_element_located((By.XPATH, "//span[normalize-space()='No. of Provincial Offices']"))
-                ), "No. of Provincial Offices field name not found"
-                print("No. of Provincial Offices field name is visible")
-
-                assert WebDriverWait(driver, 10).until(
-                    EC.visibility_of_element_located((By.XPATH, "//span[normalize-space()='No. of Other Offices']"))
-                ), "No. of Other Offices field name not found"
-                print("No. of Other Offices field name is visible")
-
-                assert WebDriverWait(driver, 10).until(
-                    EC.visibility_of_element_located((By.XPATH, "//span[normalize-space()='No. of Actual Plantilla Positions']"))
-                ), "No. of Actual Plantilla Positions field name not found"
-                print("No. of Actual Plantilla Positions field name is visible")
+                    EC.visibility_of_element_located((By.XPATH, "//button[normalize-space()='Browse']"))
+                ), "Browse button not found"
+                print("Browse button is visible")
 
             except AssertionError as e:
                 print(e)
 
-            reg_field = driver.find_element(By.XPATH, "//input[@id='oc_no_reg_offices']")
-            reg_field.clear()
-            reg_field.send_keys(form_data["reg"])
+            basis_field = driver.find_element(By.XPATH, "//textarea[@id='agn_legal_basis']")
+            basis_field.clear()
+            basis_field.send_keys(form_data["basis"])
 
-            prov_field = driver.find_element(By.XPATH, "//input[@id='oc_no_prov_offices']")
-            prov_field.clear()
-            prov_field.send_keys(form_data["prov"])
+            function_field = driver.find_element(By.XPATH, "//textarea[@id='agn_functions']")
+            function_field.clear()
+            function_field.send_keys(form_data["function"])
 
-            other_field = driver.find_element(By.XPATH, "//input[@id='oc_no_other_offices']")
-            other_field.clear()
-            other_field.send_keys(form_data["other"])
+            vision_field = driver.find_element(By.XPATH, "//textarea[@id='agn_vision']")
+            vision_field.clear()
+            vision_field.send_keys(form_data["vision"])
 
-            actual_field = driver.find_element(By.XPATH, "//input[@id='oc_no_actual_plntlla_pos']")
-            actual_field.clear()
-            actual_field.send_keys(form_data["actual"])
+            mission_field = driver.find_element(By.XPATH, "//textarea[@id='agn_mission']")
+            mission_field.clear()
+            mission_field.send_keys(form_data["mission"])
+
+            img_field = driver.find_element(By.XPATH, "//input[@type='file']")
+            img_field.send_keys('C:/Users/jrmam/test/pythonProject/AgencyProfile/img.png')
 
             # Click the save button and handle confirmation
             save_button = WebDriverWait(driver, 10).until(
@@ -154,7 +112,7 @@ def agency_add(driver):
             )
             # Check the actual text against expected text
             actual_text = success_message.text.strip()  # Strip whitespace for accurate comparison
-            expected_text = "Agency / Institution added successfully."
+            expected_text = "Mandate saved successfully."
 
             if actual_text == expected_text:
                 # Find and click the OK button
