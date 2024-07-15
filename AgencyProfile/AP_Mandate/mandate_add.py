@@ -34,15 +34,15 @@ def mandate_add(driver):
                 ), "Mandate field name not found"
                 print("Mandate field name is visible")
 
-                # assert WebDriverWait(driver, 10).until(
-                #     EC.visibility_of_element_located((By.XPATH, "//span[@class='flex flex-row label-text' and text()='Legal Basis']"))
-                # ), "Legal Basis field name not found"
-                # print("Legal Basis field name is visible")
-                #
-                # assert WebDriverWait(driver, 10).until(
-                #     EC.visibility_of_element_located((By.XPATH, "//span[@class='flex flex-row label-text' and text()='Functions']"))
-                # ), "Functions field name not found"
-                # print("Functions field name is visible")
+                assert WebDriverWait(driver, 10).until(
+                    EC.visibility_of_element_located((By.XPATH, "//span[@class='flex flex-row label-text' and contains(text(),'Legal Basis')]"))
+                ), "Legal Basis field name not found"
+                print("Legal Basis field name is visible")
+
+                assert WebDriverWait(driver, 10).until(
+                    EC.visibility_of_element_located((By.XPATH, "//span[@class='flex flex-row label-text' and contains(text(),'Functions')]"))
+                ), "Functions field name not found"
+                print("Functions field name is visible")
 
                 assert WebDriverWait(driver, 10).until(
                     EC.visibility_of_element_located(
@@ -50,20 +50,20 @@ def mandate_add(driver):
                 ), "Vision Statement field name not found"
                 print("Vision Statement field name is visible")
 
-                # assert WebDriverWait(driver, 10).until(
-                #     EC.visibility_of_element_located((By.XPATH, "//span[@class='flex flex-row label-text' and text()='Vision Statement']"))
-                # ), "Statement field name not found"
-                # print("Statement field name is visible")
+                assert WebDriverWait(driver, 10).until(
+                    EC.visibility_of_element_located((By.XPATH, "//span[@class='flex flex-row label-text' and contains(text(),'Vision Statement')]"))
+                ), "Statement field name not found"
+                print("Statement field name is visible")
 
                 assert WebDriverWait(driver, 10).until(
                     EC.visibility_of_element_located((By.XPATH, "//p[normalize-space()='Mission Statement']"))
                 ), "Mission Statement field name not found"
                 print("Mission Statement field name is visible")
 
-                # assert WebDriverWait(driver, 10).until(
-                #     EC.visibility_of_element_located((By.XPATH, "//span[@class='flex flex-row label-text' and text()='Mission Statement']"))
-                # ), "Statement field name not found"
-                # print("Statement field name is visible")
+                assert WebDriverWait(driver, 10).until(
+                    EC.visibility_of_element_located((By.XPATH, "//span[@class='flex flex-row label-text' and contains(text(),'Mission Statement')]"))
+                ), "Statement field name not found"
+                print("Statement field name is visible")
 
                 assert WebDriverWait(driver, 10).until(
                     EC.visibility_of_element_located((By.XPATH, "//p[contains(text(),'Agency and its Environment (Functional Interface C')]"))
