@@ -58,41 +58,32 @@ def StratCon_add(driver):
             except AssertionError as e:
                 print(e)
 
-            filledmale_field = driver.find_element(By.XPATH, "/html/body/div[1]/div/div/div[2]/div[2]/main/div/div[3]/div/form/div[1]/div[1]/table/tbody/tr[1]/td[2]/input")
-            filledmale_field.clear()
-            filledmale_field.send_keys(form_data["filledmale"])
-
-            filledfemale_field = driver.find_element(By.XPATH, "//input[contains(@class,'female-filled-up-input border-transparent rounded text-center w-full placeholder-gray-400 placeholder-opacity-75 text-sm')]")
-            filledfemale_field.clear()
-            filledfemale_field.send_keys(form_data["filledfemale"])
-
-            conmale_field = driver.find_element(By.XPATH, "/html/body/div[1]/div/div/div[2]/div[2]/main/div/div[3]/div/form/div[1]/div[1]/table/tbody/tr[2]/td[2]/input")
-            conmale_field.clear()
-            conmale_field.send_keys(form_data["conmale"])
-
-            confemale_field = driver.find_element(By.XPATH, "//input[contains(@class,'female-contractual-input border-transparent rounded text-center w-full placeholder-gray-400 placeholder-opacity-75 text-sm')]")
-            confemale_field.clear()
-            confemale_field.send_keys(form_data["confemale"])
-
-            tempmale_field = driver.find_element(By.XPATH, "/html/body/div[1]/div/div/div[2]/div[2]/main/div/div[3]/div/form/div[1]/div[1]/table/tbody/tr[3]/td[2]/input")
-            tempmale_field.clear()
-            tempmale_field.send_keys(form_data["tempmale"])
-
-            tempfemale_field = driver.find_element(By.XPATH, "//input[contains(@class,'female-non-permanent-input border-transparent rounded text-center w-full placeholder-gray-400 placeholder-opacity-75 text-sm')]")
-            tempfemale_field.clear()
-            tempfemale_field.send_keys(form_data["tempfemale"])
-
-            budget_dropdown = Select(driver.find_element(By.XPATH, "//select[@id='budget_src_fund']"))
+            mfo_field = driver.find_element(By.XPATH, "//input[@placeholder='Select MFO']")
+            mfo_field.clear()
+            mfo_field.send_keys(form_data["mfo"])
             time.sleep(1)
-            budget_dropdown.select_by_index(0)
+            options = WebDriverWait(driver, 10).until(
+                EC.visibility_of_all_elements_located((By.CLASS_NAME, "vs__dropdown-menu"))
+            )
+            # Click the desired option (e.g., the first option)
+            desired_option = options[0]  # Change the index as needed
+            desired_option.click()
 
-            amount_field = driver.find_element(By.XPATH, "//input[@id='budget_amount']")
-            amount_field.clear()
-            amount_field.send_keys(form_data["amount"])
+            system_field = driver.find_element(By.XPATH, "//textarea[@id='critical_mngt']")
+            system_field.clear()
+            system_field.send_keys(form_data["system"])
+
+            problem_field = driver.find_element(By.XPATH, "//textarea[@id='problem']")
+            problem_field.clear()
+            problem_field.send_keys(form_data["problem"])
+
+            use_field = driver.find_element(By.XPATH, "//textarea[@id='intended']")
+            use_field.clear()
+            use_field.send_keys(form_data["use"])
 
             # Click the save button and handle confirmation
             save_button = WebDriverWait(driver, 10).until(
-                EC.visibility_of_element_located((By.XPATH, "//button[normalize-space()='Save']"))
+                EC.visibility_of_element_located((By.XPATH, "/html[1]/body[1]/div[2]/div[2]/div[1]/div[2]/form[1]/div[6]/button[1]"))
             )
             assert save_button.is_displayed(), "Save button is not visible"
             assert save_button.text == "Save", "Save button text is incorrect"
@@ -105,7 +96,7 @@ def StratCon_add(driver):
             )
             # Check the actual text against expected text
             actual_text = success_message.text.strip()  # Strip whitespace for accurate comparison
-            expected_text = "Organizational Structure added successfully."
+            expected_text = "Strategic Concern for ICT Use added successfully."
 
             if actual_text == expected_text:
                 # Find and click the OK button
