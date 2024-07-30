@@ -8,7 +8,7 @@ library_path = 'C:/Users/jrmam/test/pythonProject/Library'
 sys.path.insert(0, library_path)
 
 from loginAgency import loginAgency
-from userAgency_add import userAgency_add
+from user_add import user_add
 
 def main():
     # Initialize the browser driver
@@ -19,7 +19,7 @@ def main():
     try:
         # Execute test cases
         loginAgency(driver)
-        userAgency_add(driver)
+        user_add(driver)
 
     finally:
         # Close the browser

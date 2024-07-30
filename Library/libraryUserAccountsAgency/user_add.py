@@ -5,23 +5,24 @@ import time
 
 def user_add(driver):
     # Go to the specific page where the form is located
+    print("wow")
     library = WebDriverWait(driver, 30).until(
-        EC.element_to_be_clickable((By.XPATH, "/html/body/div/div/div/div[1]/div/ul/li[5]/a"))
+        EC.element_to_be_clickable((By.XPATH, "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/ul[1]/li[5]/a[1]"))
     )
     library.click()
-
+    print("wow")
     user = WebDriverWait(driver, 30).until(
-        EC.element_to_be_clickable((By.XPATH, "/html/body/div[1]/div/div/div[2]/div[2]/main/div/div[2]/div/ul/li[6]/p"))
+        EC.element_to_be_clickable((By.XPATH, "/html[1]/body[1]/div[1]/div[1]/div[1]/div[2]/div[2]/main[1]/div[1]/div[2]/div[1]/ul[1]/li[3]/p[1]"))
     )
     user.click()
 
     form_data_list = [
         {
-            "first_name": "John",
+            "first_name": "Juan",
             "middle_initial": "D",
             "surname": "Doe",
             "suffix": "Jr",
-            "email": "jrmamauag777@gmail.com",
+            "email": "jrmamauag123@gmail.com",
             "contact": "09163152945",
             "position": "Officer",
             "level": "Office Focal Person"
